@@ -2,8 +2,8 @@
   <% key = "success" if key == "notice" %>
   <% key = "danger" if key == "alert" %>
 
-  <div class="alert alert-<%= key %>" role="alert">
+  <div class="alert alert-<%= key %> text-bold" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <strong><%= raw(value) %></strong>
+    <%= raw(value) %>
   </div>
 <% end %>

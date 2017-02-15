@@ -15,26 +15,21 @@
         <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
       </div>
 
-      <div id="devise-form-actions" class="hidden-xs">
-        <%= f.submit "Entrar", class: "btn btn-primary" %>
+      <div id="devise-form-actions">
+        <%= f.submit "Entrar", class: "btn btn-primary hidden-xs" %>
+        <%= f.submit "Entrar", class: "btn btn-primary btn-block visible-xs" %>
 
-        &nbsp;
+        <span class="hidden-xs">&nbsp;</span>
 
-        <%= link_to "Cadastre-se. É gratuito!", new_registration_path(resource_name), class: "btn btn-success" %>
+        <div class="visible-xs-block">&nbsp;</div>
 
-        <%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: "btn btn-default pull-right" %>
-      </div>
+        <%= link_to "Cadastre-se. É gratuito!", new_registration_path(resource_name), class: "btn btn-success hidden-xs" %>
+        <%= link_to "Cadastre-se. É gratuito!", new_registration_path(resource_name), class: "btn btn-success btn-block visible-xs" %>
 
-      <div id="devise-form-actions" class="visible-xs">
-        <%= f.submit "Entrar", class: "btn btn-primary btn-block" %>
+        <div class="visible-xs-block">&nbsp;</div>
 
-        <div class="spacer"></div>
-
-        <%= link_to "Cadastre-se. É gratuito!", new_registration_path(resource_name), class: "btn btn-success btn-block" %>
-
-        <div class="spacer"></div>
-
-        <%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: "btn btn-default btn-block" %>
+        <%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: "btn btn-default pull-right hidden-xs" %>
+        <%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: "btn btn-default btn-block visible-xs" %>
       </div>
     <% end %>
   </div>

@@ -12,6 +12,6 @@ class Question < ActiveRecord::Base
   protected
 
   def set_position
-    self.position = user.questions.count + 1 if user.present? && position.nil?
+    self.position = (user.questions.order(:position).last.position rescue 0) + 1 if user.present? && position.nil?
   end
 end

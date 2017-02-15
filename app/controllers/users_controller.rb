@@ -4,14 +4,20 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:edit, :update, :publish, :unpublish, :destroy]
 
+  def edit
+    if params[:only_account].blank? && current_user.needs_setup?
+      flash.now[:info] ||= "Olá! Tudo bom? Primeiro vamos realizar a configuração inicial da sua conta."
+    end
+  end
+
   def update
     if @user.update(user_params)
       if params[:only_account].present? || current_user.answers.exists?
         notice = "A sua conta foi atualizada com sucesso!" if params[:only_account].present?
-        notice = "A sua configuração inicial foi atualizada com sucesso!" if params[:only_account].blank?
+        notice = "A configuração inicial foi realizada com sucesso!" if params[:only_account].blank?
         redirect_to edit_user_path(@user, only_account: params[:only_account]), notice: notice
       else
-        flash[:info] = "Tudo certo. Agora, por favor, revise as questões antes de publicar o questionário e começar a receber respostas."
+        flash[:info] = "Tudo certo. Agora, por favor, revise as questões e publique o questionário para começar a receber respostas."
         redirect_to questions_path
       end
     else

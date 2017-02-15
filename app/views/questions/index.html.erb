@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+  <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
     <%= render "shared/flashes" %>
 
     <div id="form-question" class="panel panel-default">
@@ -11,16 +11,16 @@
         <%= form_for(@question, html: {class: "form-inline"}) do |f| %>
           <%= render partial: "shared/errors", locals: {resource: @question} %>
 
-          <div class="form-group">
-            <%= f.label :statement, "Pergunta*" %>
+          <div class="form-group required">
+            <%= f.label :statement %>
             <span class="hidden-xs">&nbsp;</span>
             <%= f.text_field :statement, class: "form-control", size: 30 %>
           </div>
 
           <span class="hidden-xs">&nbsp;</span>
 
-          <div class="form-group">
-            <%= f.label :position, "Posição*" %>
+          <div class="form-group required">
+            <%= f.label :position %>
             <span class="hidden-xs">&nbsp;</span>
             <%= f.text_field :position, class: "form-control", size: 1 %>
           </div>
@@ -56,7 +56,7 @@
                 <td class="text-right">
                   <%= link_to "Atualizar", edit_question_path(question) %>
                   &nbsp;&middot;&nbsp;
-                  <%= link_to "Remover", question, method: :delete, data: {confirm: "Isso apagará a questão e todas as respostas. Você tem certeza?"} %>
+                  <%= link_to "Remover", question, method: :delete, data: {confirm: "Isso apagará a questão e todas as respostas.\n\n - Você tem certeza?\n"} %>
                 </td>
               </tr>
             <% end %>
@@ -71,7 +71,7 @@
         <div class="panel-body" style="padding-bottom: 15px;">
           <% if current_user.questionaire_published? %>
             <p><strong>Seu questionário está publicado.</strong></p>
-            <p><i class="fa fa-check"></i> Para ocultar o questionário, <%= link_to "clique aqui", users_unpublish_path, data: {confirm: "Isso irá ocultar o questionário de seus clientes. Você tem certeza?"} %>.</p>
+            <p><i class="fa fa-check"></i> Para ocultar o questionário, <%= link_to "clique aqui", users_unpublish_path, data: {confirm: "Isso irá ocultar o questionário de seus clientes.\n\n - Você tem certeza?\n"} %>.</p>
 
             <hr/>
 
@@ -92,7 +92,11 @@
             </div>
           <% else %>
             <p><strong>Seu questionário não está publicado.</strong></p>
-            <p style="margin-top: 16px;"><%= link_to "Publicar agora", users_publish_path, class: "btn btn-success" %></p>
+            <p style="margin-top: 16px;">
+              <%= link_to(users_publish_path, class: "btn btn-success btn-lg text-bold") do %>
+                <i class="fa fa-arrow-right"></i> Publicar agora
+              <% end %>
+            </p>
           <% end %>
         </div>
       </div>
@@ -100,7 +104,7 @@
       <div class="panel panel-warning">
         <div class="panel-heading"><i class="fa fa-share-alt-square"></i> Publicação do questionário</div>
         <div class="panel-body">
-          <p><strong>Corrija os itens abaixo antes de publicar.</strong></p>
+          <p><strong>Corrija os itens abaixo antes de publicar:</strong></p>
 
           <% if current_user.company.blank? %>
             <p><i class="fa fa-times"></i> <%= link_to "Informe o nome da sua empresa", edit_user_path(current_user) %></p>
@@ -118,9 +122,9 @@
     <% end %>
   </div>
 
-  <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
-    <div class="visible-sm"></div>
-    <div class="visible-xs"></div>
+  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+    <div class="visible-sm-block">&nbsp;</div>
+    <div class="visible-xs-block">&nbsp;</div>
 
     <div class="panel panel-info">
       <div class="panel-heading"><i class="fa fa-info-circle"></i> Algumas dicas</div>
@@ -129,6 +133,7 @@
         <p><i class="fa fa-check"></i> Mantenha as perguntas simples e diretas</p>
         <p><i class="fa fa-check"></i> O campo "posição" permite ordenar questões</p>
         <p><i class="fa fa-check"></i> Remover uma questão apagará suas respostas</p>
+        <p><i class="fa fa-check"></i> Respostas possíveis: "Satisfeito", "Neutro" ou "Insatisfeito"</p>
       </div>
     </div>
 
@@ -138,19 +143,19 @@
         <div class="panel-body">
           <h4>Use seu próprio endereço web</h4>
           <p><i class="fa fa-check"></i> Seu cliente se sentirá mais confiante.</p>
-          <p class="price"><i class="fa fa-check"></i> A partir de R$ 90,00. <a href="#" data-toggle="modal" data-target="#modal">Contrate</a>.</p>
+          <p class="price"><i class="fa fa-shopping-cart"></i> A partir de R$ 120,00. <a href="#" data-toggle="modal" data-target="#modal">Contrate</a>.</p>
 
           <hr/>
 
           <h4>Envio do questionário por Email</h4>
           <p><i class="fa fa-check"></i> Seu cliente receberá o questionário por email.</p>
-          <p class="price"><i class="fa fa-check"></i> A partir de R$ 120,00. <a href="#" data-toggle="modal" data-target="#modal">Contrate</a>.</p>
+          <p class="price"><i class="fa fa-shopping-cart"></i> A partir de R$ 150,00. <a href="#" data-toggle="modal" data-target="#modal">Contrate</a>.</p>
 
           <hr/>
 
           <h4>Envio do questionário por SMS</h4>
           <p><i class="fa fa-check"></i> Seu cliente receberá o questionário no celular.</p>
-          <p class="price"><i class="fa fa-check"></i> A partir de R$ 450,00. <a href="#" data-toggle="modal" data-target="#modal">Contrate</a>.</p>
+          <p class="price"><i class="fa fa-shopping-cart"></i> A partir de R$ 450,00. <a href="#" data-toggle="modal" data-target="#modal">Contrate</a>.</p>
         </div>
       </div>
     <% end %>
@@ -164,11 +169,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><i class="fa fa-star"></i> Compartilhamento Premium</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-center">
         <p>
-          Para contratar o serviço selecionado, por favor, nos envie um email para o endereço
-          <a href="mailto:satisfacao360@gmail.com">satisfacao360@gmail.com</a>
-          com os detalhes da sua solicitação.
+          Muito bem! Para contratar o serviço selecionado, por favor, nos envie um email com os detalhes da sua solicitação.
+          Faremos o possível para lhe atender.
+        </p>
+
+        <p class="text-bold">
+          <i class="fa fa-envelope"></i>
+          Email: <a href="mailto:satisfacao360@gmail.com">satisfacao360@gmail.com</a>.
         </p>
       </div>
       <div class="modal-footer">

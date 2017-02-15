@@ -50,7 +50,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="visible-xs"><%= link_to "Respostas", root_path %></li>
+            <% if current_user.questionaire_published? %>
+              <li class="visible-xs"><%= link_to "Respostas", root_path %></li>
+            <% end %>
+
             <li class="visible-xs"><%= link_to "Questionário", questions_path %></li>
             <li class="visible-xs"><%= link_to "Config. inicial", edit_user_path(current_user) %></li>
             <li><%= link_to "Minha conta", edit_user_path(current_user, only_account: true) %></li>
@@ -64,13 +67,16 @@
       <div class="row">
         <div class="col-sm-1 col-md-1 col-lg-1 sidebar">
           <ul class="nav nav-sidebar text-center">
-            <li>
-              <%= link_to root_path do %>
-                <i class="fa fa-line-chart"></i>
-                <br/>
-                Respostas
-              <% end %>
-            </li>
+            <% if current_user.questionaire_published? %>
+              <li>
+                <%= link_to root_path do %>
+                  <i class="fa fa-line-chart"></i>
+                  <br/>
+                  Respostas
+                <% end %>
+              </li>
+            <% end %>
+
             <li>
               <%= link_to questions_path do %>
                 <i class="fa fa-list-ol"></i>

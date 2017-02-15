@@ -7,10 +7,8 @@ class BackendController < ApplicationController
     if current_user.answers.exists?
       index
     elsif current_user.needs_setup?
-      flash[:info] = "Olá! Tudo bom? Primeiro vamos realizar a configuração inicial da sua conta."
       redirect_to edit_user_path(current_user)
     else
-      flash[:info] = "Por favor, revise as questões antes de publicar o questionário e começar a receber respostas."
       redirect_to questions_path
     end
   end

@@ -7,6 +7,11 @@ class QuestionsController < ApplicationController
   def index
     @question ||= Question.new
     @questions = current_user.questions.order(:position).all
+
+    if !current_user.questionaire_published? && !current_user.answers.exists?
+      flash.now[:info] ||= "Por favor, revise as questões e publique o questionário para começar a receber respostas."
+    end
+
     render :index
   end
 

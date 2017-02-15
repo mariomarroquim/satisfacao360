@@ -4,12 +4,8 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <title><%= @user.company %> - Pesquisa De Satisfação Online</title>
     <meta name="description" content="Responda Nossa Pesquisa De Satisfação Online e Nos Ajude a Melhorar!"/>
     <meta name="author" content="Satisfação 360"/>
-    <%= favicon_link_tag "favicon.ico", :rel => "shortcut icon" %>
-
     <meta property="og:locale" content="pt_BR"/>
     <meta property="og:url" content="<%= url_for(view_questionaire_path(slug: @user.slug, only_path: false)) %>"/>
     <meta property="og:title" content="Pesquisa De Satisfação Online - <%= current_user.company %>"/>
@@ -18,6 +14,9 @@
     <meta property="og:image" content="<%= URI(request.url) + @user.logo.url %>"/>
     <meta property="og:type" content="website"/>
 
+    <title><%= @user.company %> - Pesquisa De Satisfação Online</title>
+
+    <%= favicon_link_tag "favicon.ico", :rel => "shortcut icon" %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
@@ -50,7 +49,7 @@
           <p id="footer"><%= @user.questionaire_footer %></p>
 
           <div id="sharing">
-            <p>Compartilhe esta página :-)</p>
+            <p>Compartilhe esta página</p>
             <span class="st_facebook_large" displayText="Facebook"></span>
             <span class="st_whatsapp_large" displayText="WhatsApp"></span>
             <span class="st_twitter_large" displayText="Tweet"></span>

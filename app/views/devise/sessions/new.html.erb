@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= render "shared/flashes" %>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: "form"}) do |f| %>
+      <%= bootstrap_devise_error_messages! %>
+
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      </div>
+
+      <div id="devise-form-actions" class="hidden-xs">
+        <%= f.submit "Entrar", class: "btn btn-primary" %>
+
+        &nbsp;
+
+        <%= link_to "Cadastre-se. É gratuito!", new_registration_path(resource_name), class: "btn btn-success" %>
+
+        <%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: "btn btn-default pull-right" %>
+      </div>
+
+      <div id="devise-form-actions" class="visible-xs">
+        <%= f.submit "Entrar", class: "btn btn-primary btn-block" %>
+
+        <div class="spacer"></div>
+
+        <%= link_to "Cadastre-se. É gratuito!", new_registration_path(resource_name), class: "btn btn-success btn-block" %>
+
+        <div class="spacer"></div>
+
+        <%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: "btn btn-default btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,214 @@
+// Place all the styles related to the backend controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body#backend {
+
+  /* Move down content because we have a fixed navbar that is 50px tall */
+
+  padding-top: 60px;
+
+  /* Small customizations in the navbar */
+
+  .navbar-inverse, .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    background-color: #428BCA;
+
+    a {
+      color: #d3e0ea;
+    }
+
+    a:hover, a:focus {
+      color: #ffffff;
+    }
+  }
+
+  .navbar-brand {
+    height: 60px;
+  }
+
+  .navbar-nav {
+    margin-top: 4px;
+  }
+
+  .navbar-inverse .navbar-toggle {
+    margin-top: 13px;
+    background-color: #d6d4d4;
+    border: 1px solid #d6d4d4;
+
+    .icon-bar {
+      background-color: #428bca;
+    }
+  }
+
+  .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: #d6d4d4;
+    border: 1px solid #d6d4d4;
+  }
+
+  /* Global add-ons */
+
+  /*
+   * Top navigation
+   * Hide default border to remove 1px line.
+   */
+
+  .navbar-fixed-top {
+    border: 0;
+    border-bottom: 1px #d6d4d4 solid;
+  }
+
+  /* Sidebar navigation */
+
+  .sidebar {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .sidebar {
+      position: fixed;
+      top: 61px;
+      bottom: 0;
+      left: 0;
+      z-index: 1000;
+      display: block;
+      padding: 20px;
+      overflow-x: hidden;
+      overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+      background-color: #f5f5f5;
+      border-right: 1px solid #eee;
+    }
+  }
+
+  .nav-sidebar {
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
+    text-align: center;
+
+    i {
+      font-size: 36px;
+      margin-bottom: 8px
+    }
+  }
+
+  .nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .nav-sidebar > .active > a,
+  .nav-sidebar > .active > a:hover,
+  .nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #428bca;
+  }
+
+  /* Main content */
+
+  .main {
+    padding: 20px;
+
+    .page-header {
+      margin-top: 0px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .main {
+      padding-right: 40px;
+      padding-left: 180px;
+    }
+  }
+
+  /* Adjustments in general page layout */
+
+  @media (min-width: 768px) {
+    .sidebar { width: 140px; }
+    .main { width: 100%; padding-left: 180px; }
+  }
+
+  @media (min-width: 992px) {
+    .sidebar { width: 140px; }
+    .main { width: 100%; padding-left: 180px; }
+  }
+
+  @media (min-width: 1200px) {
+    .sidebar { width: 140px; }
+    .main { width: 100%; padding-left: 180px; }
+  }
+
+  /* Form styles */
+
+  #error_explanation {
+    h2 {
+      margin: 0px 0px 10px 0px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    ul {
+      padding-left: 24px;
+    }
+  }
+
+  .field_with_errors {
+    display: inline;
+
+    label {
+      color: red;
+    }
+
+    input, select {
+      border-color: red;
+    }
+  }
+
+  .actions {
+    margin: 24px 0px 6px 0px;
+  }
+
+  .panel-heading {
+    font-weight: bold;
+  }
+
+  /* General questions styles */
+
+  .panel-body {
+    padding-bottom: 5px;
+
+    #error_explanation {
+      margin-bottom: 16px;
+    }
+  }
+
+  #form-question .panel-body {
+    padding-bottom: 15px;
+    background-color: #f5f5f5;
+  }
+
+  #sharing {
+    margin-top: 18px;
+  }
+
+  #share-link {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .price {
+    font-weight: bold;
+  }
+
+  .modal-header {
+    background-color: #428BCA;
+    color: #ffffff;
+  }
+
+  .modal-body p {
+    margin-top: 10px;
+    a {
+      font-weight: bold;
+    }
+  }
+
+}

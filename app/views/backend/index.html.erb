@@ -1,0 +1,43 @@
+<div class="page-header">
+  <h1>Respostas</h1>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading"><i class="fa fa-line-chart"></i> Visão 360</div>
+
+      <div class="panel-body">
+        <%= pie_chart @answers_by_result, stacked: true, library: {legend: {position: "top"}} %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading"><i class="fa fa-line-chart"></i> Distribuição por questão</div>
+
+      <div class="panel-body">
+        <%= column_chart @answers_by_question_and_result, stacked: true, library: {bar: {groupWidth: "20"}, legend: {position: "top"}} %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><i class="fa fa-line-chart"></i> Linha do tempo (geral)</div>
+
+  <div class="panel-body">
+    <%= column_chart backend_answers_by_result_and_month_path, stacked: true, library: {bar: {groupWidth: "20"}, legend: {position: "top"}} %>
+  </div>
+</div>
+
+<% current_user.questions.order(:position).all.each do |question| %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><i class="fa fa-line-chart"></i> <%= "Linha do tempo (por questão): \"#{question.statement}\"" %></div>
+
+    <div class="panel-body">
+      <%= column_chart backend_answers_by_result_and_month_path(question_id: question.id), stacked: true, library: {bar: {groupWidth: "20"}, legend: {position: "top"}} %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,179 @@
+<div class="page-header">
+  <h1>Questionário</h1>
+</div>
+
+<div class="row">
+  <div class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+    <%= render "shared/flashes" %>
+
+    <div id="form-question" class="panel panel-default">
+      <div class="panel-body">
+        <%= form_for(@question, html: {class: "form-inline"}) do |f| %>
+          <%= render partial: "shared/errors", locals: {resource: @question} %>
+
+          <div class="form-group">
+            <%= f.label :statement, "Pergunta*" %>
+            <span class="hidden-xs">&nbsp;</span>
+            <%= f.text_field :statement, class: "form-control", size: 30 %>
+          </div>
+
+          <span class="hidden-xs">&nbsp;</span>
+
+          <div class="form-group">
+            <%= f.label :position, "Posição*" %>
+            <span class="hidden-xs">&nbsp;</span>
+            <%= f.text_field :position, class: "form-control", size: 1 %>
+          </div>
+
+          <span class="hidden-xs">&nbsp;</span>
+
+          <%= f.submit (@question.new_record? ? "Adicionar" : "Atualizar"), class: "btn btn-primary" %>
+
+          <% if @question.persisted? %>
+            &nbsp;
+            <%= link_to "Cancelar", questions_path, class: "btn btn-default" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table class="table table-hover" style="margin-bottom: 14px;">
+          <thead>
+            <tr>
+              <th>Pergunta</th>
+              <th class="text-center">Posição</th>
+              <th width="160"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @questions.each do |question| %>
+              <tr>
+                <td><%= question.statement %></td>
+                <td class="text-center"><%= question.position %></td>
+                <td class="text-right">
+                  <%= link_to "Atualizar", edit_question_path(question) %>
+                  &nbsp;&middot;&nbsp;
+                  <%= link_to "Remover", question, method: :delete, data: {confirm: "Isso apagará a questão e todas as respostas. Você tem certeza?"} %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <% if !current_user.needs_setup? %>
+      <div class="panel panel-default">
+        <div class="panel-heading"><i class="fa fa-share-alt-square"></i> Publicação do questionário</div>
+        <div class="panel-body" style="padding-bottom: 15px;">
+          <% if current_user.questionaire_published? %>
+            <p><strong>Seu questionário está publicado.</strong></p>
+            <p><i class="fa fa-check"></i> Para ocultar o questionário, <%= link_to "clique aqui", users_unpublish_path, data: {confirm: "Isso irá ocultar o questionário de seus clientes. Você tem certeza?"} %>.</p>
+
+            <hr/>
+
+            <p><strong>Compartilhamento:</strong>
+            <p id="share-link">
+              <i class="fa fa-arrow-right"></i>
+              Acesso: <%= link_to url_for(view_questionaire_path(slug: current_user.slug, only_path: false)), view_questionaire_path(slug: current_user.slug, only_path: false) %>
+            </p>
+
+            <div id="sharing">
+              <span class="st_facebook_large" displayText="Facebook"></span>
+              <span class="st_whatsapp_large" displayText="WhatsApp"></span>
+              <span class="st_twitter_large" displayText="Tweet"></span>
+              <span class="st_linkedin_large" displayText="LinkedIn"></span>
+              <span class="st_googleplus_large" displayText="Google +"></span>
+              <span class="st_pinterest_large" displayText="Pinterest"></span>
+              <span class="st_email_large" displayText="Email"></span>
+            </div>
+          <% else %>
+            <p><strong>Seu questionário não está publicado.</strong></p>
+            <p style="margin-top: 16px;"><%= link_to "Publicar agora", users_publish_path, class: "btn btn-success" %></p>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <div class="panel panel-warning">
+        <div class="panel-heading"><i class="fa fa-share-alt-square"></i> Publicação do questionário</div>
+        <div class="panel-body">
+          <p><strong>Corrija os itens abaixo antes de publicar.</strong></p>
+
+          <% if current_user.company.blank? %>
+            <p><i class="fa fa-times"></i> <%= link_to "Informe o nome da sua empresa", edit_user_path(current_user) %></p>
+          <% end %>
+
+          <% if current_user.logo.blank? %>
+            <p><i class="fa fa-times"></i> <%= link_to "Adicione a logomarca da sua empresa", edit_user_path(current_user) %></p>
+          <% end %>
+
+          <% if !current_user.questions.exists? %>
+            <p><i class="fa fa-times"></i> <%= link_to "Adicione ao menos uma pergunta", questions_path %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
+    <div class="visible-sm"></div>
+    <div class="visible-xs"></div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading"><i class="fa fa-info-circle"></i> Algumas dicas</div>
+      <div class="panel-body">
+        <p><i class="fa fa-check"></i> Não recomendamos mais do que 6 questões</p>
+        <p><i class="fa fa-check"></i> Mantenha as perguntas simples e diretas</p>
+        <p><i class="fa fa-check"></i> O campo "posição" permite ordenar questões</p>
+        <p><i class="fa fa-check"></i> Remover uma questão apagará suas respostas</p>
+      </div>
+    </div>
+
+    <% if !current_user.needs_setup? %>
+      <div class="panel panel-primary" style="margin-bottom: 6px;">
+        <div class="panel-heading"><i class="fa fa-star"></i> Compartilhamento Premium</div>
+        <div class="panel-body">
+          <h4>Use seu próprio endereço web</h4>
+          <p><i class="fa fa-check"></i> Seu cliente se sentirá mais confiante.</p>
+          <p class="price"><i class="fa fa-check"></i> A partir de R$ 90,00. <a href="#" data-toggle="modal" data-target="#modal">Contrate</a>.</p>
+
+          <hr/>
+
+          <h4>Envio do questionário por Email</h4>
+          <p><i class="fa fa-check"></i> Seu cliente receberá o questionário por email.</p>
+          <p class="price"><i class="fa fa-check"></i> A partir de R$ 120,00. <a href="#" data-toggle="modal" data-target="#modal">Contrate</a>.</p>
+
+          <hr/>
+
+          <h4>Envio do questionário por SMS</h4>
+          <p><i class="fa fa-check"></i> Seu cliente receberá o questionário no celular.</p>
+          <p class="price"><i class="fa fa-check"></i> A partir de R$ 450,00. <a href="#" data-toggle="modal" data-target="#modal">Contrate</a>.</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div id="modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-star"></i> Compartilhamento Premium</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Para contratar o serviço selecionado, por favor, nos envie um email para o endereço
+          <a href="mailto:satisfacao360@gmail.com">satisfacao360@gmail.com</a>
+          com os detalhes da sua solicitação.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

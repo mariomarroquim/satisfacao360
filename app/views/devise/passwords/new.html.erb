@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, role: "form"}) do |f| %>
+      <%= bootstrap_devise_error_messages! %>
+
+      <div class="form-group required">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div id="devise-form-actions">
+        <%= f.submit "Recuperar senha", class: "btn btn-primary pull-left" %>
+      </div>
+    <% end %>
+  </div>
+</div>

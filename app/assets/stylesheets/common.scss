@@ -1,0 +1,7 @@
+div.form-group.required label:after {
+  font-weight: bold;
+  color: red;
+  margin-left: 2px;
+  content: "*";
+  display: inline;
+}

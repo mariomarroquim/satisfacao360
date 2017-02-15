@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Sistema Para Pesquisa De Satisfação Online. Plano gratuito!"/>
+    <meta name="author" content="Mário Marroquim"/>
+    <meta property="og:locale" content="pt_BR"/>
+    <meta property="og:url" content="<%= url_for(view_questionaire_path(slug: current_user.slug, only_path: false)) %>"/>
+    <meta property="og:title" content="Pesquisa De Satisfação Online - <%= current_user.company %>"/>
+    <meta property="og:site_name" content="<%= current_user.company %>"/>
+    <meta property="og:description" content="Responda Nossa Pesquisa De Satisfação Online e Nos Ajude a Melhorar!"/>
+    <meta property="og:image" content="<%= URI(request.url) + current_user.logo.url %>"/>
+    <meta property="og:type" content="website"/>
+
+    <title>Satisfação 360</title>
+
+    <%= favicon_link_tag "favicon.ico", :rel => "shortcut icon" %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+    <script>
+      var Chartkick = {"language": "pt-BR"};
+    </script>
+    <%= javascript_include_tag("https://www.google.com/jsapi", "chartkick", "data-turbolinks-track" => true) %>
+
+    <%= csrf_meta_tags %>
+
+    <link href="http://getbootstrap.com.br/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body id="backend">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to image_tag("logo-backend.png", class: "navbar-brand"), backend_index_url %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="visible-xs"><%= link_to "Respostas", backend_index_path %></li>
+            <li class="visible-xs"><%= link_to "Questionário", questions_path %></li>
+            <li class="visible-xs"><%= link_to "Config. inicial", edit_user_path(current_user) %></li>
+            <li><%= link_to "Minha conta", edit_user_path(current_user, only_account: true) %></li>
+            <li><%= link_to "Sair do sistema", destroy_user_session_path, :method => :delete %></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-1 col-md-1 col-lg-1 sidebar">
+          <ul class="nav nav-sidebar text-center">
+            <li>
+              <%= link_to backend_index_path do %>
+                <i class="fa fa-line-chart"></i>
+                <br/>
+                Respostas
+              <% end %>
+            </li>
+            <li>
+              <%= link_to questions_path do %>
+                <i class="fa fa-list-ol"></i>
+                <br/>
+                Questionário
+              <% end %>
+            </li>
+            <li>
+              <%= link_to edit_user_path(current_user) do %>
+                <i class="fa fa-cog"></i>
+                <br/>
+                Config. Inicial
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-11 col-md-11 col-lg-11 main">
+          <%= yield %>
+
+          <hr style="<%= 'margin-top: 26px;' if controller_name == 'backend' %>"/>
+          <p>&copy; <%= Date.today.year %> Satisfação 360. Suporte: <a href="mailto:satisfacao360@gmail.com">satisfacao360@gmail.com</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="http://getbootstrap.com.br/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+  </body>
+</html>

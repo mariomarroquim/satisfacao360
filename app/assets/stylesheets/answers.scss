@@ -1,0 +1,78 @@
+// Place all the styles related to the answers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body#answers {
+  padding: 60px 0px 60px 0px;
+
+  #logo {
+    text-align: center;
+    margin-bottom: 20px;
+
+    a img {
+      width: auto;
+      max-height: 100px;
+    }
+  }
+
+  .question .panel-body {
+    text-align: center;
+
+    .statement {
+      margin-bottom: 14px;
+      font-weight: bold;
+    }
+
+    .answer {
+      input[type="radio"] {
+        visibility: hidden;
+        width: 0px;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      label {
+        margin-right: 4px;
+        cursor: pointer;
+
+        img {
+          width: auto;
+          height: 50px;
+          opacity: 0.6;
+          filter: alpha(opacity=60);
+        }
+      }
+
+      input[type="radio"]:checked+label img {
+        width: auto;
+        height: 60px;
+        opacity: 1.0;
+        filter: alpha(opacity=100);
+      }
+    }
+  }
+
+  .actions {
+    margin: 28px 0px 30px 0px;
+    text-align: center;
+  }
+
+  #header, #footer {
+    text-align: center;
+    color: #b7b7b7;
+  }
+
+  #standalone-message {
+    margin: 40px 0px 42px 0px;
+    text-align: center;
+    line-height: 80px;
+  }
+
+  #sharing {
+    text-align: center;
+
+    p {
+      margin-bottom: 17px;
+    }
+  }
+}

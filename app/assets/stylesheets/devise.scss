@@ -1,0 +1,20 @@
+body#devise {
+  .alert-danger {
+    h5 {
+      margin: 0px 0px 10px 0px;
+      font-weight: bold;
+    }
+
+    ul {
+      padding-left: 24px;
+    }
+  }
+
+  #devise-form-actions {
+    margin-top: 22px;
+
+    .spacer {
+      height: 20px;
+    }
+  }
+}

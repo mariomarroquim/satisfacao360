@@ -1,0 +1,30 @@
+<% if @user.questionaire_published? %>
+  <%= form_tag save_questionaire_path, class: "form-horizontal" do %>
+    <% @questions.each do |question| %>
+      <div class="question panel panel-default">
+        <div class="panel-body">
+          <p class="statement"><%= question.statement %></p>
+
+          <div class="answer">
+            <% Answer.results.keys.each do |result| %>
+              <%= radio_button_tag "answers[#{question.id}]", result %>
+              <%= label_tag "answers_#{question.id}_#{result}", image_tag("#{result}.png") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= button_tag(type: "submit", class: "btn btn-primary btn-lg") do %>
+        <i class="fa fa-check"></i> Finalizar
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <h1 id="standalone-message">
+    Este questionário está em manutenção agora.
+    <br/>
+    Por favor, volte mais tarde.
+  </h1>
+<% end %>

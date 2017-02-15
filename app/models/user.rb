@@ -36,11 +36,11 @@ class User < ActiveRecord::Base
   end
 
   def set_questionaire_header
-    self.questionaire_header ||= "Sua opinião é muito importante. Ajude-nos a melhorar nossos produtos e serviços respondendo a estas questões."
+    self.questionaire_header = "Sua opinião é muito importante. Ajude-nos a melhorar nossos produtos e serviços respondendo a estas questões." if questionaire_header.blank?
   end
 
   def set_questionaire_footer
-    self.questionaire_footer ||= "Nenhuma informação pessoal sua será divulgada ao responder este questionário. Fique tranquilo."
+    self.questionaire_footer = "Nenhuma informação pessoal sua será divulgada ao responder este questionário. Fique tranquilo." if questionaire_footer.blank?
   end
 
   def create_sample_questions!

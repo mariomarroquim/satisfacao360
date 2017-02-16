@@ -4,7 +4,7 @@ class BackendController < ApplicationController
   before_action :authenticate_user!
 
   def start
-    if current_user.answers.exists?
+    if current_user.questionaire_published? || current_user.answers.exists?
       index
     elsif current_user.needs_setup?
       redirect_to edit_user_path(current_user)

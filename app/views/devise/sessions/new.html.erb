@@ -1,10 +1,8 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <%= render "shared/flashes" %>
+    <%= render "shared/flashes" if flash[:success].present? || flash[:notice].present? %>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: "form"}) do |f| %>
-      <%= bootstrap_devise_error_messages! %>
-
       <div class="form-group">
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, class: "form-control" %>

@@ -4,6 +4,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.references :user, index: true
       t.references :question, index: true
       t.integer :result, index: true
+      t.text :observation, length: 1.megabyte
       t.timestamps null: false
     end
   end

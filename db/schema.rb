@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160317101617) do
     t.integer  "user_id"
     t.integer  "question_id"
     t.integer  "result"
+    t.text     "observation"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

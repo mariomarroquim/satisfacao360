@@ -33,7 +33,7 @@
   <body id="answers">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6 col-md-offset-3 text-center">
           <div id="logo">
             <%= link_to image_tag(@user.logo.url), view_questionaire_path(slug: @user.slug) %>
           </div>
@@ -48,8 +48,8 @@
 
           <p id="footer"><%= @user.questionaire_footer %></p>
 
-          <div id="sharing">
-            <p>Compartilhe esta página</p>
+          <div id="sharing" class="text-bold">
+            <p>Compartilhe esta página:</p>
             <span class="st_facebook_large" displayText="Facebook"></span>
             <span class="st_whatsapp_large" displayText="WhatsApp"></span>
             <span class="st_twitter_large" displayText="Tweet"></span>

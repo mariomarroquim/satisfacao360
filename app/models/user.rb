@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def set_questionaire_footer
-    self.questionaire_footer = "Nenhuma informação pessoal sua será divulgada ao responder este questionário. Fique tranquilo." if questionaire_footer.blank?
+    self.questionaire_footer = "Nenhuma informação pessoal sua será divulgada ao responder este questionário. Fique tranquilo(a)." if questionaire_footer.blank?
   end
 
   def create_sample_questions!

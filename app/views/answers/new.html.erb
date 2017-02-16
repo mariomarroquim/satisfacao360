@@ -1,14 +1,18 @@
 <% if @user.questionaire_published? %>
   <%= form_tag save_questionaire_path, class: "form-horizontal" do %>
     <% @questions.each do |question| %>
-      <div class="question panel panel-default">
-        <div class="panel-body">
-          <p class="statement"><%= question.statement %></p>
+      <div class="question panel panel-primary">
+        <div class="panel-heading text-bold"><%= question.statement %></div>
 
-          <div class="answer">
+        <div class="panel-body">
+          <div class="row">
             <% Answer.results.keys.each do |result| %>
-              <%= radio_button_tag "answers[#{question.id}]", result %>
-              <%= label_tag "answers_#{question.id}_#{result}", image_tag("#{result}.png") %>
+              <div class="answer col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <%= radio_button_tag "answers[#{question.id}]", result %>
+                <%= label_tag "answers_#{question.id}_#{result}", image_tag("#{result}.png") %>
+                <br/>
+                <%= Answer::RESULT_NAMES[Answer.results[result.to_sym]] %>
+              </div>
             <% end %>
           </div>
         </div>
@@ -16,7 +20,7 @@
     <% end %>
 
     <div class="actions">
-      <%= button_tag(type: "submit", class: "btn btn-primary btn-lg") do %>
+      <%= button_tag(type: "submit", class: "btn btn-success btn-lg text-bold") do %>
         <i class="fa fa-check"></i> Finalizar
       <% end %>
     </div>

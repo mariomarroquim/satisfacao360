@@ -51,7 +51,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <% if current_user.questionaire_published? || current_user.answers.exists? %>
-              <li class="visible-xs"><%= link_to "Respostas", root_path %></li>
+              <li class="visible-xs"><%= link_to "Respostas", backend_index_path %></li>
             <% end %>
 
             <li class="visible-xs"><%= link_to "Questionário", questions_path %></li>
@@ -69,7 +69,7 @@
           <ul class="nav nav-sidebar text-center">
             <% if current_user.questionaire_published? || current_user.answers.exists? %>
               <li>
-                <%= link_to root_path do %>
+                <%= link_to backend_index_path do %>
                   <i class="fa fa-line-chart"></i>
                   <br/>
                   Respostas
@@ -97,7 +97,8 @@
           <%= yield %>
 
           <hr style="<%= 'margin-top: 26px;' if controller_name == 'backend' %>"/>
-          <p>&copy; <%= Date.today.year %> Satisfação 360. Suporte: <a href="mailto:satisfacao360@gmail.com">satisfacao360@gmail.com</a>.</p>
+
+          <%= render partial: "shared/copyright" %>
         </div>
       </div>
     </div>

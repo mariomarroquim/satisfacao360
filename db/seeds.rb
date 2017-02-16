@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create! email: "mariomarroquim@gmail.com", password: "12345678", password_confirmation: "12345678"
+User.create! email: "mariomarroquim@gmail.com", password: "12345678", password_confirmation: "12345678", company: "Coca-cola", logo: File.new("#{Rails.root}/doc/logo-coca.jpg")
 
 1_500.times do
   Answer.create! question: Question.order("random()").first, result: Answer.results.keys[0], created_at: eval("Time.now - #{Kernel.rand(13)}.month")

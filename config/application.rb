@@ -23,14 +23,13 @@ module Satisfacao360
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    # Unlock http://www.google.com/accounts/DisplayUnlockCaptcha
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      address:              'smtp.gmail.com',
+      address:              'smtp.mailgun.org',
       port:                 587,
-      domain:               'gmail.com',
-      user_name:            'mariomarroquim@gmail.com',
-      password:             '<<Not today!>>',
+      domain:               'mg.mariomarroquim.info',
+      user_name:            'postmaster@mg.mariomarroquim.info',
+      password:             '???',
       authentication:       'plain',
       enable_starttls_auto: true
     }
